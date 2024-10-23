@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/cep/v2/[0-9]{8}"
+  },
+
+  "response": {
+    "status": 200,
+    "bodyFileName": "exampleCep.json"
+  }
+}

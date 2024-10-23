@@ -1,0 +1,12 @@
+{
+  "cep": "03626000",
+  "state": "SP",
+  "city": "São Paulo",
+  "neighborhood": "Vila Domitila",
+  "street": "Rua São Celso",
+  "service": "open-cep",
+  "location": {
+    "type": "Point",
+    "coordinates": { }
+  }
+}

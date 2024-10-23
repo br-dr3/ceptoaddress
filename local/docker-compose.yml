@@ -2,6 +2,15 @@ name: ceptoaddress
 
 services:
 
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: wiremock-ceptoaddress
+    ports:
+      - "3001:8080"
+    volumes:
+      - ./wiremock:/home/wiremock/
+    entrypoint: [ "/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose" ]
+
   aws_context:
     container_name: localstack-ceptoaddress
     image: localstack/localstack:3.8.1
