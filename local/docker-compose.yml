@@ -1,0 +1,53 @@
+name: ceptoaddress
+
+services:
+
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: wiremock-ceptoaddress
+    ports:
+      - "3001:8080"
+    volumes:
+      - ./wiremock:/home/wiremock/
+    entrypoint: [ "/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose" ]
+
+  aws_context:
+    container_name: localstack-ceptoaddress
+    image: localstack/localstack:3.8.1
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DEBUG=${DEBUG:-0}
+      - AWS_DEFAULT_REGION=sa-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./localstack/:/etc/localstack/init/ready.d"
+    networks:
+      - local
+
+  db:
+    container_name: mysql-ceptoaddress
+    image: mysql/mysql-server:8.0.32
+    restart: always
+    environment:
+      MYSQL_DATABASE: ceptoaddress-db
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_USER: ceptoaddress
+      MYSQL_PASSWORD: password
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  local:
+    name: local
