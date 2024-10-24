@@ -30,6 +30,11 @@
             <artifactId>ceptoaddress-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.brdr3</groupId>
+            <artifactId>ceptoaddress-postalcode-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

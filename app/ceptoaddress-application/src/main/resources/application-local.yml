@@ -1,0 +1,3 @@
+client:
+  cep:
+    url: "http://localhost:3001"
