@@ -22,11 +22,25 @@ docker compose up -d
 
 it will be created a mysql, a localstack and a wiremock container.
 
-After build this app with [Maven](https://maven.apache.org/), you will be able to run it.
+After build this app with [Maven](https://maven.apache.org/) and `Java 21`, you will be able to run it.
+You should set the following env vars (you can check the values in `docker-compose.yml`)
+
+```shell
+AWS_ACCESS_KEY_ID=test
+AWS_SECRET_ACCESS_KEY=test
+```
+You should set as well the spring-profile in order to run local:
+```shell
+java -jar ... -Dspring.profiles.active=local ... 
+```
+
 You can see a swagger-ui if you click [here](http://localhost:8081/). 
 
 Use `Try it out` button to send some message to endpoint. You can see endpoints documentation in Swagger as well.
 
+You can see the message created on localstack by entering the [Localstack](https://app.localstack.cloud/).
+
+![](artifacts/ceptoaddress-localstack-sqs-photo.png)
 
 ## Modules
 This application uses the `Hexagonal Architecture`, and have some modules to do so.
@@ -55,3 +69,10 @@ Controller with endpoint `POST /ceptoaddress/`, which receives a json, like the 
 }
 ```
 This json will be enriched with address info in business module.
+
+### ceptoaddress-postalcode-client
+This module is responsible for managing the communication with the postalcode provider, in this case, [BrasilAPI CEP V2](https://brasilapi.com.br/docs#tag/CEP-V2)
+Based on a postal code, it returns all the other information.
+
+### ceptoaddress-messaging-sqs
+This module manages the post to sqs queue `customer-cep`.

@@ -1,3 +1,9 @@
 client:
   cep:
     url: "http://localhost:3001"
+
+sqs:
+  accessKeyId: ${AWS_ACCESS_KEY_ID}
+  secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
+  customer-cep:
+    queue-name: "customer-cep"
