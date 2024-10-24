@@ -35,6 +35,14 @@ This application uses the `Hexagonal Architecture`, and have some modules to do 
 Just the Spring Boot Application main. Its pom do the job of mix all the classes, by importing all the modules inside
 it.
 
+### ceptoaddress-business
+This module knows how the application should use the other modules to have what is needed. Works exactly as any other module,
+but it searches for the other modules to do what only the other modules methods do, like an orchestrator.
+
+### ceptoaddress-core
+A module that shares with other modules the uses cases. Every module should expose its methods by implementing an interface
+that is present at core module. 
+
 ### ceptoaddress-domain
 A module that shares with other modules the data. Every module should pass its information by using a domain object.
 
@@ -46,4 +54,4 @@ Controller with endpoint `POST /ceptoaddress/`, which receives a json, like the 
   "postalCode": "00000000"
 }
 ```
-This json will be enriched with address info in other module
+This json will be enriched with address info in business module.
