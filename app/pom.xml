@@ -17,12 +17,12 @@
 
     <modules>
         <module>ceptoaddress-application</module>
-<!--        <module>core</module>-->
-<!--        <module>domain</module>-->
-<!--        <module>cep-client</module>-->
-<!--        <module>messaging-sqs</module>-->
-<!--        <module>repository-mysql</module>-->
-<!--        <module>gateway</module>-->
+        <module>ceptoaddress-gateway</module>
+        <!--        <module>ceptoaddress-core</module>-->
+<!--        <module>ceptoaddress-domain</module>-->
+<!--        <module>ceptoaddress-postalcode-client</module>-->
+<!--        <module>ceptoaddress-messaging-sqs</module>-->
+<!--        <module>ceptoaddress-repository-mysql</module>-->
     </modules>
 
     <properties>
