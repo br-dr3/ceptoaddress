@@ -22,6 +22,11 @@
     <dependencies>
         <dependency>
             <groupId>com.github.brdr3</groupId>
+            <artifactId>ceptoaddress-business</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.brdr3</groupId>
             <artifactId>ceptoaddress-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
