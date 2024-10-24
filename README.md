@@ -28,6 +28,7 @@ You should set the following env vars (you can check the values in `docker-compo
 ```shell
 AWS_ACCESS_KEY_ID=test
 AWS_SECRET_ACCESS_KEY=test
+CEPTOADDRESS_DB_PASSWORD=password
 ```
 You should set as well the spring-profile in order to run local:
 ```shell
@@ -70,9 +71,13 @@ Controller with endpoint `POST /ceptoaddress/`, which receives a json, like the 
 ```
 This json will be enriched with address info in business module.
 
+### ceptoaddress-messaging-sqs
+This module manages the post to sqs queue `customer-cep`.
+
 ### ceptoaddress-postalcode-client
 This module is responsible for managing the communication with the postalcode provider, in this case, [BrasilAPI CEP V2](https://brasilapi.com.br/docs#tag/CEP-V2)
 Based on a postal code, it returns all the other information.
 
-### ceptoaddress-messaging-sqs
-This module manages the post to sqs queue `customer-cep`.
+### ceptoaddress-repository-mysql
+This module manages the persistence to table `cep_calls`, as created in `db/migration`, which you can find in `ceptoaddress-application/src/main/resources` 
+module folder.
