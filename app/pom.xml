@@ -17,12 +17,12 @@
 
     <modules>
         <module>ceptoaddress-application</module>
-<!--        <module>core</module>-->
-<!--        <module>domain</module>-->
-<!--        <module>cep-client</module>-->
-<!--        <module>messaging-sqs</module>-->
-<!--        <module>repository-mysql</module>-->
-<!--        <module>gateway</module>-->
+        <module>ceptoaddress-gateway</module>
+        <module>ceptoaddress-domain</module>
+<!--        <module>ceptoaddress-core</module>-->
+<!--        <module>ceptoaddress-postalcode-client</module>-->
+<!--        <module>ceptoaddress-messaging-sqs</module>-->
+<!--        <module>ceptoaddress-repository-mysql</module>-->
     </modules>
 
     <properties>
@@ -49,12 +49,19 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
 
@@ -67,6 +74,27 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>1.6.2</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
