@@ -35,6 +35,9 @@ This application uses the `Hexagonal Architecture`, and have some modules to do 
 Just the Spring Boot Application main. Its pom do the job of mix all the classes, by importing all the modules inside
 it.
 
+### ceptoaddress-domain
+A module that shares with other modules the data. Every module should pass its information by using a domain object.
+
 ### ceptoaddress-gateway
 Controller with endpoint `POST /ceptoaddress/`, which receives a json, like the following:
 ```json
