@@ -2,13 +2,21 @@ package com.github.brdr3.ceptoaddress.postalcode.client.service;
 
 import com.github.brdr3.ceptoaddress.core.service.CepService;
 import com.github.brdr3.ceptoaddress.domain.Address;
+import com.github.brdr3.ceptoaddress.domain.CepCall;
 import com.github.brdr3.ceptoaddress.postalcode.client.config.ClientProperties;
 import com.github.brdr3.ceptoaddress.postalcode.client.dto.AddressDTO;
 import com.github.brdr3.ceptoaddress.postalcode.client.mapper.AddressDTOMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigInteger;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
+
+import static java.lang.String.format;
 
 @Service
 public class CepServiceImpl implements CepService {
@@ -25,10 +33,15 @@ public class CepServiceImpl implements CepService {
     }
 
     @Override
-    public Address getAddress(final Address address) {
-        final AddressDTO addressDTO = restTemplate.getForObject(clientProperty.getUrl() + ENDPOINT, AddressDTO.class,
-                Map.of(POSTALCODE_VARIABLE, address.getPostalCode()));
+    public CepCall getAddress(final Address address) {
+        String url = clientProperty.getUrl() + ENDPOINT;
 
-        return AddressDTOMapper.INSTANCE.toDomain(addressDTO);
+        LocalDateTime before = LocalDateTime.now();
+        ResponseEntity<AddressDTO> response = restTemplate.getForEntity(url, AddressDTO.class,
+                Map.of(POSTALCODE_VARIABLE, address.getPostalCode()));
+        long duration = Duration.between(before, LocalDateTime.now()).toMillis();
+
+        return AddressDTOMapper.INSTANCE.toCepCall(response.getBody(), url, response.getStatusCode().toString(),
+                BigInteger.valueOf(duration));
     }
 }
