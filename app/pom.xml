@@ -17,11 +17,11 @@
 
     <modules>
         <module>ceptoaddress-application</module>
+        <module>ceptoaddress-business</module>
         <module>ceptoaddress-core</module>
         <module>ceptoaddress-domain</module>
         <module>ceptoaddress-gateway</module>
-        <module>ceptoaddress-business</module>
-        <!--        <module>ceptoaddress-postalcode-client</module>-->
+        <module>ceptoaddress-postalcode-client</module>
 <!--        <module>ceptoaddress-messaging-sqs</module>-->
 <!--        <module>ceptoaddress-repository-mysql</module>-->
     </modules>
