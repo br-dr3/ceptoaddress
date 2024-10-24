@@ -6,7 +6,7 @@ and transform it in a valid Address using the [BrasilAPI](https://brasilapi.com.
 
 Each call to `BrasilAPI` will be saved in a database.
 
-Also it puts the data retrieved to a sqs queue, called `customer-cep`
+Also, it puts the data retrieved to a sqs queue, called `customer-cep`
 
 ![](artifacts/ceptoaddress-arch.png)
 

@@ -4,3 +4,29 @@ springdoc:
 
 server:
   port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql:
+          dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/ceptoaddress-db
+    username: ceptoaddress
+    password: ${CEPTOADDRESS_DB_PASSWORD}
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+    baseline-on-migrate: true
+    baseline-version: 0
